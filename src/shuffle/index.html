@@ -1,0 +1,113 @@
+<template id="shuffle">
+    <h1>随机打乱数组</h1>
+    <section class="function">
+        <h2>方法一：数组数据两两交换</h2>
+        <pre>
+            <button>尝试</button>
+            <code>
+            const shuffle = array => {
+                let count = array.length - 1
+                while (count) {
+                    let index = Math.floor(Math.random() * (count + 1))
+                    ;[array[index], array[count]] = [array[count], array[index]]
+                    count--
+                }
+                return array
+            }
+            </code>
+        </pre>
+        <h2>方法二：首尾取元素随机插入</h2>
+        <pre>
+            <button>尝试</button>
+            <code>
+            const shuffle2 = array => {
+                let count = len = array.length
+                while (count) {
+                    let index = Math.floor(Math.random() * len)
+                    array.splice(index, 0, array.pop())
+                    count--
+                }
+                return array
+            }
+
+            或
+            
+            const shuffle2 = array => {
+                let count = len = array.length
+                while (count) {
+                    let index = Math.floor(Math.random() * len)
+                    array.splice(index, 0, array.shift())
+                    count--
+                }
+                return array
+            }
+            </code>
+        </pre>
+        <h2>方法三：简单随机抽样重组</h2>
+        <pre>
+            <button>尝试</button>
+            <code>
+            const shuffle3 = array => {
+                let newArr = [] 
+                let count = array.length
+                while (count) {
+                    let index = Math.floor(Math.random() * (count - 1))
+                    newArr.push(array.splice(index, 1)[0])
+                    count--
+                }
+                return newArr
+            }
+            </code>
+        </pre>
+    </section>
+    <section class="display"></section>
+</template>
+      
+<script>
+    var originalArray = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
+    // 数组数据两两交换
+    const shuffle1 = array => {
+        let count = array.length - 1
+        while (count) {
+            let index = Math.floor(Math.random() * (count + 1))
+            ;[array[index], array[count]] = [array[count], array[index]]
+            count--
+        }
+        return array
+    }
+
+    // 首尾取元素随机插入
+    const shuffle2 = array => {
+        let count = len = array.length
+        while (count) {
+            let index = Math.floor(Math.random() * len)
+            array.splice(index, 0, array.pop())
+            count--
+        }
+        return array
+    }
+
+    // 随机抽样重组
+    const shuffle3 = array => {
+        let newArr = [] 
+        let count = array.length
+        while (count) {
+            let index = Math.floor(Math.random() * (count - 1))
+            newArr.push(array.splice(index, 1)[0])
+            count--
+        }
+        return newArr
+    }
+</script>
+
+<script>
+// 定义<function-shuffle>
+class HTMLFunctionShuffleElement extends HTMLElement {
+    constructor() {
+    super()
+    this.innerHTML = document.currentScript.ownerDocument.querySelector('#shuffle').innerHTML;
+    }
+};
+// 注册
+customElements.define('function-shuffle', HTMLFunctionShuffleElement);
+</script>
