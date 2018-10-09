@@ -1,0 +1,20 @@
+{
+  "name": "awesome-function-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jylzs369/Awesome-Function-Library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jylzs369/Awesome-Function-Library/issues"
+  },
+  "homepage": "https://github.com/jylzs369/Awesome-Function-Library#readme"
+}
