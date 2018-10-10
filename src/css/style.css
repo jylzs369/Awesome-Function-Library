@@ -62,6 +62,10 @@ pre button {
     width: calc(40% - 2em);
     background: #eee;
     padding: 2em;
+    color: #333;
+}
+.display p {
+    margin: 2em;
 }
 
 pre code {
