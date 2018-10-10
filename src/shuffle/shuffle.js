@@ -24,11 +24,12 @@ const shuffle2 = array => {
 
 // 随机抽样重组
 const shuffle3 = array => {
-    let newArr = [] 
-    let count = array.length
+    let tempArr = Array.of(...array)
+    let newArr = []
+    let count = tempArr.length
     while (count) {
         let index = Math.floor(Math.random() * (count - 1))
-        newArr.push(array.splice(index, 1)[0])
+        newArr.push(tempArr.splice(index, 1)[0])
         count--
     }
     return newArr
