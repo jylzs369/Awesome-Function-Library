@@ -1,9 +1,10 @@
 <template id="shuffle">
     <h1>随机打乱数组</h1>
     <section class="function">
+        <div>原始数据：['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']</div>
         <h2>方法一：数组数据两两交换</h2>
         <pre>
-            <button>尝试</button>
+            <button id="shuffle1">尝试</button>
             <code>
             const shuffle = array => {
                 let count = array.length - 1
@@ -18,7 +19,7 @@
         </pre>
         <h2>方法二：首尾取元素随机插入</h2>
         <pre>
-            <button>尝试</button>
+            <button id="shuffle2">尝试</button>
             <code>
             const shuffle2 = array => {
                 let count = len = array.length
@@ -45,14 +46,15 @@
         </pre>
         <h2>方法三：简单随机抽样重组</h2>
         <pre>
-            <button>尝试</button>
+            <button id="shuffle3">尝试</button>
             <code>
             const shuffle3 = array => {
-                let newArr = [] 
-                let count = array.length
+                let tempArr = Array.of(...array)
+                let newArr = []
+                let count = tempArr.length
                 while (count) {
                     let index = Math.floor(Math.random() * (count - 1))
-                    newArr.push(array.splice(index, 1)[0])
+                    newArr.push(tempArr.splice(index, 1)[0])
                     count--
                 }
                 return newArr
@@ -60,11 +62,17 @@
             </code>
         </pre>
     </section>
-    <section class="display"></section>
+    <section class="display">
+        <h3>方法一：</h3>
+        <p></p>
+        <h3>方法二：</h3>
+        <p></p>
+        <h3>方法三：</h3>
+        <p></p>
+    </section>
 </template>
       
 <script>
-    var originalArray = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
     // 数组数据两两交换
     const shuffle1 = array => {
         let count = array.length - 1
@@ -89,14 +97,27 @@
 
     // 随机抽样重组
     const shuffle3 = array => {
-        let newArr = [] 
-        let count = array.length
+        let tempArr = Array.of(...array)
+        let newArr = []
+        let count = tempArr.length
         while (count) {
             let index = Math.floor(Math.random() * (count - 1))
-            newArr.push(array.splice(index, 1)[0])
+            newArr.push(tempArr.splice(index, 1)[0])
             count--
         }
         return newArr
+    }
+
+    window.onload = function () {
+        var originalArray = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
+        const paras = document.querySelectorAll('p')
+        document.querySelector('.function').addEventListener('click', (e) => {
+            let target = e.target
+            if (e.target.tagName === 'BUTTON') {
+                let index = e.target.id.slice(-1)
+                paras[index - 1].innerHTML = eval(`shuffle${index}`)(originalArray)
+            }
+        }, false)
     }
 </script>
 
