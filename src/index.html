@@ -7,10 +7,20 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="import" href="shuffle/index.html">
+    <link rel="import" href="deduplicate/index.html">
 </head>
 <body>
     <main>
-        <function-shuffle/>
+        <ul class="menu">
+            <li title="shuffle">随机打乱数组</li>
+            <li title="deduplicate">字符串去重</li>
+        </ul>
+        <section class="page hide">
+            <button id="back">回到目录</button>
+            <article title="shuffle" class="hide"><function-shuffle/></article>
+            <article title="deduplicate" class="hide"><function-deduplicate/></article>
+        </section>
     </main>
+    <script src="index.js"></script>
 </body>
 </html>
