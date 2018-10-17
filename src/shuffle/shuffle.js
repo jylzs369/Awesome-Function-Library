@@ -1,4 +1,4 @@
-var originalArray = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
+var originalData = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
 
 // 数组数据两两交换
 const shuffle1 = array => {
@@ -34,6 +34,6 @@ const shuffle3 = array => {
     }
     return newArr
 }
-console.log(shuffle1(originalArray))
-console.log(shuffle2(originalArray))
-console.log(shuffle3(originalArray))
+console.log(shuffle1(originalData))
+console.log(shuffle2(originalData))
+console.log(shuffle3(originalData))

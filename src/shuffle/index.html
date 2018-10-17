@@ -109,13 +109,13 @@
     }
 
     window.onload = function () {
-        var originalArray = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
+        var originalData = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
         const paras = document.querySelectorAll('p')
         document.querySelector('.function').addEventListener('click', (e) => {
             let target = e.target
             if (e.target.tagName === 'BUTTON') {
                 let index = e.target.id.slice(-1)
-                paras[index - 1].innerHTML = eval(`shuffle${index}`)(originalArray)
+                paras[index - 1].innerHTML = eval(`shuffle${index}`)(originalData)
             }
         }, false)
     }
