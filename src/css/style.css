@@ -48,6 +48,23 @@ pre button {
     top: .8em;
     right: .8em;
 }
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2em;
+    color: #999;
+}
+.menu li[title] {
+    line-height: 2;
+    cursor: pointer;
+    transition: color .2s linear;
+}
+.menu li[title]:hover {
+    color: #eee;
+}
+
 .function {
     width: calc(100vw - 40vw - 12em);
     height: 80.7vh;
@@ -66,6 +83,10 @@ pre button {
 }
 .display p {
     margin: 2em;
+}
+
+.hide {
+    display: none;
 }
 
 pre code {
