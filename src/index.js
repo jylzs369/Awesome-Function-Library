@@ -14,7 +14,6 @@ window.onload = function () {
         // 开启页面并显示部分文章
         if (e.target.tagName === 'LI') {
             let title = e.target.title
-            console.log(document.querySelector(`article[title="${title}"`))
             hideSection(menu)
             showSection(page)
             showSection(document.querySelector(`article[title="${title}"`))

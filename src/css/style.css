@@ -67,7 +67,7 @@ pre button {
 
 .function {
     width: calc(100vw - 40vw - 12em);
-    height: 80.7vh;
+    height: 75vh;
     margin-right: calc(40vw + 2em);
     overflow-y: auto;
 }
