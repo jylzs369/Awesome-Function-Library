@@ -1,14 +1,9 @@
-var originalArray = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
+var originalData = 'dshuoahdowqdbasdhsaiduisadusbaodbdhoashowqbcorirwtqrzbcmpoe'
 
-// 数组数据两两交换
-const shuffle1 = array => {
-    let count = array.length - 1
-    while (count) {
-        let index = Math.floor(Math.random() * (count + 1))
-        ;[array[index], array[count]] = [array[count], array[index]]
-        count--
-    }
-    return array
+// 利用ES6原生Set API
+const deduplicate1 = string => {
+    let result = Array.from(new Set(string.split(''))).join('')
+    return result
 }
 
 // 首尾取元素随机插入

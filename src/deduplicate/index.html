@@ -1,19 +1,14 @@
-<template id="duplicate">
+<template id="deduplicate">
     <h1>字符串去重</h1>
     <section class="function">
-        <div>原始数据：'dshuoahdowqdbasdhsaiduisadusbaodbdhoashowqbcorirwtqrzbcmpoe'</div>
-        <h2>方法一：利用Set API</h2>
+        <div>原始数据：'我我们都是勤勤劳的小蜜蜂蜂蜜'</div>
+        <h2>方法一：利用ES6原生Set API</h2>
         <pre>
-            <button id="duplicate1">尝试</button>
+            <button id="deduplicate1">尝试</button>
             <code>
-            const shuffle = array => {
-                let count = array.length - 1
-                while (count) {
-                    let index = Math.floor(Math.random() * (count + 1))
-                    ;[array[index], array[count]] = [array[count], array[index]]
-                    count--
-                }
-                return array
+            const deduplicate1 = string => {
+                let result = Array.from(new Set(string.split(''))).join('')
+                return result
             }
             </code>
         </pre>
@@ -29,38 +24,40 @@
 </template>
       
 <script>
-    // 数组数据两两交换
-    const duplicate1 = array => {
-        let count = array.length - 1
-        while (count) {
-            let index = Math.floor(Math.random() * (count + 1))
-            ;[array[index], array[count]] = [array[count], array[index]]
-            count--
+    // 定义<function-depulicate>
+    class HTMLFunctionDeduplicateElement extends HTMLElement {
+        constructor() {
+            super()
+            this.innerHTML = document.currentScript.ownerDocument.querySelector('#deduplicate').innerHTML;
         }
-        return array
+    };
+    // 注册
+    customElements.define('function-deduplicate', HTMLFunctionDeduplicateElement);
+</script>
+<script>
+    // 利用ES6原生Set API
+    const deduplicate1 = string => {
+        let result = Array.from(new Set(string.split(''))).join('')
+        return result
+    }
+    // 利用
+    const dedeplicate2 = string => {
+        let result = []
+        let arr = string.split('')
+        arr.forEach(item => {
+            if (result.find()
+        })
     }
 
-    window.onload = function () {
-        var originalArray = 'dshuoahdowqdbasdhsaiduisadusbaodbdhoashowqbcorirwtqrzbcmpoe'
-        const paras = document.querySelectorAll('p')
-        document.querySelector('.function').addEventListener('click', (e) => {
+    (function () {
+        var originalData = '我我们都是勤勤劳的小蜜蜂蜂蜜'
+        const paras = document.querySelectorAll('function-deduplicate p')
+        document.querySelector('function-deduplicate .function').addEventListener('click', (e) => {
             let target = e.target
             if (e.target.tagName === 'BUTTON') {
                 let index = e.target.id.slice(-1)
-                paras[index - 1].innerHTML = eval(`duplicate${index}`)(originalArray)
+                paras[index - 1].innerHTML = eval(`deduplicate${index}`)(originalData)
             }
         }, false)
-    }
-</script>
-
-<script>
-// 定义<function-shuffle>
-class HTMLFunctionDeduplicateElement extends HTMLElement {
-    constructor() {
-    super()
-    this.innerHTML = document.currentScript.ownerDocument.querySelector('#duplicate').innerHTML;
-    }
-};
-// 注册
-customElements.define('function-duplicate', HTMLFunctionDeduplicateElement);
+    })()
 </script>
