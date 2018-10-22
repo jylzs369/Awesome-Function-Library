@@ -119,12 +119,14 @@ const shuffle3 = array => {
     }
     return newArr
 }
-let originalData = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
-const paras = document.querySelectorAll('function-shuffle p')
-document.querySelector('function-shuffle .function').addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON') {
-        let index = e.target.id.slice(-1)
-        paras[index - 1].innerHTML = eval(`shuffle${index}`)(originalData)
-    }
-}, false)
+(function () {
+    let originalData = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
+    const paras = document.querySelectorAll('function-shuffle p')
+    document.querySelector('function-shuffle .function').addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            let index = e.target.id.slice(-1)
+            paras[index - 1].innerHTML = eval(`shuffle${index}`)(originalData)
+        }
+    }, false)
+})()
 </script>
