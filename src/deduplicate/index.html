@@ -52,15 +52,11 @@
 <script>
     // 利用ES6原生Set API
     const deduplicate1 = string => {
-        let start = new Date().getTime()
         let result = Array.from(new Set(string.split(''))).join('')
-        let end = new Date().getTime()
-        console.log(start, end, end - start)
         return result
     }
     // 逐一取出字符串首元素同时过滤相同元素
     const deduplicate2 = string => {
-        let start = new Date().getTime()
         let result = []
         let arr = string.split('')
         while (arr.length) {
@@ -68,10 +64,7 @@
             result.push(current)
             arr = arr.filter(item => item !== current)
         }
-        result = result.join('')
-        let end = new Date().getTime()
-        console.log(start, end, end - start)
-        return result
+        return result.join('')
     }
 
     (function () {

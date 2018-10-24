@@ -1,4 +1,4 @@
-var originalData = 'dshuoahdowqdbasdhsaiduisadusbaodbdhoashowqbcorirwtqrzbcmpoe'
+var originalData = '我我们都是勤勤劳的小蜜蜂蜂蜜'
 
 // 利用ES6原生Set API
 const deduplicate1 = string => {
@@ -6,29 +6,17 @@ const deduplicate1 = string => {
     return result
 }
 
-// 首尾取元素随机插入
-const shuffle2 = array => {
-    let count = len = array.length
-    while (count) {
-        let index = Math.floor(Math.random() * len)
-        array.splice(index, 0, array.pop())
-        count--
+// 逐一取出字符串首元素同时过滤相同元素
+const deduplicate2 = string => {
+    let result = []
+    let arr = string.split('')
+    while (arr.length) {
+        let current = arr.shift()
+        result.push(current)
+        arr = arr.filter(item => item !== current)
     }
-    return array
+    return result.join('')
 }
 
-// 随机抽样重组
-const shuffle3 = array => {
-    let tempArr = Array.of(...array)
-    let newArr = []
-    let count = tempArr.length
-    while (count) {
-        let index = Math.floor(Math.random() * (count - 1))
-        newArr.push(tempArr.splice(index, 1)[0])
-        count--
-    }
-    return newArr
-}
-console.log(shuffle1(originalArray))
-console.log(shuffle2(originalArray))
-console.log(shuffle3(originalArray))
+console.log(deduplicate1(originalData))
+console.log(deduplicate2(originalData))
