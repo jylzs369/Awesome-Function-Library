@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jylzs369/Awesome-Function-Library/issues"
   },
-  "homepage": "https://github.com/jylzs369/Awesome-Function-Library#readme"
+  "homepage": "https://github.com/jylzs369/Awesome-Function-Library#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
 }
