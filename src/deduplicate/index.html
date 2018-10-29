@@ -1,8 +1,9 @@
 <template id="deduplicate">
     <h1>字符串去重</h1>
     <section class="function">
-        <div>原始数据：'我我们都是勤勤劳的小蜜蜂蜂蜜我我们都是勤勤劳的'</div>
+        <div>原始数据：'我我们都是勤勤劳的小蜜蜂蜂蜜我我们都是勤勤劳的...'</div>
         <div>经过较大数据的测试，方法一和方法三的性能最好，不相上下，可见正则的威力还是很大的。</div>
+        <div>另外在正则方法的实现上，eval函数可谓是最大功臣，所以此函数并不是一无是处的。</div>
         <h2>方法一：利用ES6原生Set API</h2>
         <pre>
             <button id="deduplicate1">尝试</button>
