@@ -1,2 +1,11 @@
+## settings
+.vscode
+
+## package
 node_modules
+
+## debug log
 npm-debug.log
+
+## cache
+.cache
