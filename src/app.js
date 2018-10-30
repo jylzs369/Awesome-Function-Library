@@ -5,6 +5,8 @@ const path = require('path')
 const fs = require('fs')
 app = new Koa()
 
+const port = process.env.PORT || '3000'
+
 const index = ctx => {
     ctx.response.type = 'html'
     ctx.response.body = fs.createReadStream(path.resolve(__dirname, 'index.html'))
@@ -14,4 +16,4 @@ const assets = static(path.join(__dirname))
 
 app.use(assets)
 app.use(route.get('/', index))
-app.listen(3000)
+app.listen(port)
