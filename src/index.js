@@ -1,7 +1,9 @@
 window.onload = function () {
-    menu = document.querySelector('.menu')
-    page = document.querySelector('.page')
-    back = document.getElementById('back')
+    let menu = document.querySelector('.menu')
+    let page = document.querySelector('.page')
+    let back = document.getElementById('back')
+    let anchor = location.hash.slice(1)
+
     const showSection = (part) => {
         part.classList.remove('hide')
     }
@@ -25,4 +27,10 @@ window.onload = function () {
         hideSection()
         showSection(menu)
     })
+    
+    if (anchor) {
+        hideSection(menu)
+        showSection(page)
+        showSection(document.querySelector(`article[title="${anchor}"`))
+    }
 }
