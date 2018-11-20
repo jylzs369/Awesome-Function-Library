@@ -1,4 +1,4 @@
-pconst Koa = require('koa')
+const Koa = require('koa')
 const route = require('koa-route')
 const static = require('koa-static')
 const path = require('path')
