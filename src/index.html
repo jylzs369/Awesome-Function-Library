@@ -8,19 +8,23 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="import" href="shuffle/index.html">
     <link rel="import" href="deduplicate/index.html">
+    <link rel="import" href="decorators/index.html">
 </head>
 <body>
     <main>
         <ul class="menu">
             <li title="shuffle">随机打乱数组</li>
             <li title="deduplicate">字符串去重</li>
+            <li title="decorators">有用的描述符</li>
         </ul>
         <section class="page hide">
             <button id="back">回到目录</button>
             <article title="shuffle" class="hide"><function-shuffle/></article>
             <article title="deduplicate" class="hide"><function-deduplicate/></article>
+            <article title="decorators" class="hide"><function-decorators/></article>
         </section>
     </main>
+    <script src="https://cdn.bootcss.com/babel-polyfill/7.0.0-rc.4/polyfill.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
