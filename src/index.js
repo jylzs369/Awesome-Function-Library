@@ -1,4 +1,4 @@
-window.onload = function () {
+window.addEventListener('load', () => {
     let menu = document.querySelector('.menu')
     let page = document.querySelector('.page')
     let back = document.getElementById('back')
@@ -33,4 +33,4 @@ window.onload = function () {
         showSection(page)
         showSection(document.querySelector(`article[title="${anchor}"`))
     }
-}
+}, false)
