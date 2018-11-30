@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Decorators</title>
+</head>
+<body>
+    <template id="decorators">
+        decorators
+    </template>
+    <script>
+        // 定义<function-decorators>
+        class HTMLFunctionDecoratorsElement extends HTMLElement {
+            constructor() {
+                super()
+                this.innerHTML = document.currentScript.ownerDocument.querySelector('#decorators').innerHTML;
+            }
+        };
+        // 注册
+        customElements.define('function-decorators', HTMLFunctionDecoratorsElement);
+    </script>
+    <script src="decorators.js"></script>
+</body>
+</html>
