@@ -1,6 +1,8 @@
 {
     "presets": [
-        [ "@babel/env"/* , { "useBuiltIns": "usage" } */]
+        ["@babel/env", {
+            "useBuiltIns": "usage"
+        }]
     ],
     "plugins": [
         [ "@babel/plugin-proposal-decorators", { "legacy": true }]
