@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run serve",
-    "dev": "http-server -o",
+    "dev": "http-server -p 9999 -o",
     "serve": "node ./src/app.js",
     "babel": "./node_modules/.bin/babel src/decorators/decorators.js -o src/decorators/decorators.compile.js",
     "test": "echo \"Error: no test specified\" && exit 1"
