@@ -1,0 +1,65 @@
+<template id="debounce">
+    <h1>随机打乱数组</h1>
+    <section class="function">
+        <div>原始数据：['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']</div>
+        <h2>方法一：数组数据两两交换</h2>
+        <pre>
+            <button id="shuffle1">尝试</button>
+            <code>
+            const shuffle = array => {
+                let count = array.length - 1
+                while (count) {
+                    let index = Math.floor(Math.random() * (count + 1))
+                    ;[array[index], array[count]] = [array[count], array[index]]
+                    count--
+                }
+                return array
+            }
+            </code>
+        </pre>
+    </section>
+    <section class="display">
+        <h3>方法一：</h3>
+        <p></p>
+        <h3>方法二：</h3>
+        <p></p>
+        <h3>方法三：</h3>
+        <p></p>
+    </section>
+</template>
+ 
+<script>
+// 定义<function-shuffle>
+class HTMLFunctionDebounceElement extends HTMLElement {
+    constructor() {
+        super()
+        this.innerHTML = document.currentScript.ownerDocument.querySelector('#debounce').innerHTML;
+    }
+};
+// 注册
+customElements.define('function-debounce', HTMLFunctionDebounceElement);
+</script>
+
+<script>
+// 数组数据两两交换
+const shuffle1 = array => {
+    let count = array.length - 1
+    while (count) {
+        let index = Math.floor(Math.random() * (count + 1))
+        ;[array[index], array[count]] = [array[count], array[index]]
+        count--
+    }
+    return array
+}
+
+(function () {
+    let originalData = ['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']
+    const paras = document.querySelectorAll('function-shuffle p')
+    document.querySelector('function-shuffle .function').addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            let index = e.target.id.slice(-1)
+            paras[index - 1].innerHTML = eval(`shuffle${index}`)(originalData)
+        }
+    }, false)
+})()
+</script>
