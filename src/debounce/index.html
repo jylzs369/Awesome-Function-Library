@@ -5,7 +5,7 @@
             <pre>
                 <code>
             () => {
-                paras[index - 1].innerHTML += 'log '
+                paras[index - 1].innerHTML += ' 执行的内容'
             }
                 </code>
             </pre>
@@ -14,17 +14,28 @@
         <pre>
             <button id="debounce1">尝试</button>
             <code>
-            const debounce1 = function () {
+            // 简单debounce函数
+            const simpleDebounce = function () {
                 let timer = null
                 return function (fn, timeout) {
                     if (timer) clearTimeout(timer)
                     timer = setTimeout(fn, timeout)
                 }
-            }()
+            }
+            // 需要创建一个去抖器
+            let simpleDebouncer = simpleDebounce()
 
-            debounce1(() => {
-                paras[index - 1].innerHTML += 'log '
-            }, 3000)
+            // 按钮触发事件
+            simpleDebouncer(() => {
+                paras[index - 1].innerHTML += ' 执行的内容'
+                count = 0
+            }, 1000)
+            </code>
+        </pre>
+        <h2>方法二：</h2>
+        <pre>
+            <button id="debounce2">尝试</button>
+            <code>
             </code>
         </pre>
     </section>
@@ -52,25 +63,33 @@ customElements.define('function-debounce', HTMLFunctionDebounceElement);
 
 <script>
 (function () {
-    // 简单debounce函数 
-    const debounce1 = function () {
+    // 简单debounce函数
+    const simpleDebounce = function (immediate) {
         let timer = null
-        return function (fn, timeout) {
-            if (timer) clearTimeout(timer)
-            timer = setTimeout(fn, timeout)
+        return function (fn, wait) {
+            timer && clearTimeout(timer)
+            timer = setTimeout(fn, wait)
         }
-    }()
+    }
+    // 需要创建一个去抖器
+    let simpleDebouncer = simpleDebounce()
     
     const paras = document.querySelectorAll('function-debounce p')
     let count = 0
     document.querySelector('function-debounce .function').addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-            let index = e.target.id.slice(-1)
-            paras[index - 1].innerHTML = ++count
-            eval(`debounce${index}`)(() => {
-                paras[index - 1].innerHTML += ' 延迟执行的内容'
+        let index = e.target.id.slice(-1)
+        paras[index - 1].innerHTML = ++count
+        if (e.target.id === 'debounce1') {
+            simpleDebouncer(() => {
+                paras[index - 1].innerHTML += ' 执行的内容'
                 count = 0
             }, 1000)
+        }
+        if (e.target.id === 'debounce2') {
+            simpleDebouncer(() => {
+                paras[index - 1].innerHTML += ' 执行的内容'
+                count = 0
+            }, 1000, true)
         }
     }, false)
 })()

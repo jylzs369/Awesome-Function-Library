@@ -2,13 +2,13 @@ const log = function () {
     console.log('log')
 }
 
-let debounce = function () {
+const debounce = function (fn, timeout) {
     let timer = null
-    return function (fn, timeout) {
+    return function () {
         if (timer) clearTimeout(timer)
         timer = setTimeout(fn, timeout)
     }
-}()
+}
 
 document.addEventListener('click', function (e) {
     if (e.target.tagName === 'BUTTON') {
