@@ -62,17 +62,6 @@ customElements.define('function-debounce', HTMLFunctionDebounceElement);
 </script>
 
 <script>
-var o = [1, 2];
-Object.defineProperty(o, '2', {
-    value: 3,
-    writable: true,
-    configurable: true,
-    enumerable: false
-})
-console.log(o)
-for (let i of o) {
-    console.log(i)
-}
 (function () {
     // 简单debounce函数
     const simpleDebounce = function (immediate) {
