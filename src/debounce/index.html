@@ -21,12 +21,10 @@
                     if (timer) clearTimeout(timer)
                     timer = setTimeout(fn, timeout)
                 }
-            }
-            // 需要创建一个去抖器
-            let simpleDebouncer = simpleDebounce()
+            }()
 
             // 按钮触发事件
-            simpleDebouncer(() => {
+            simpleDebounce(() => {
                 paras[index - 1].innerHTML += ' 执行的内容'
                 count = 0
             }, 1000)
@@ -64,35 +62,80 @@ customElements.define('function-debounce', HTMLFunctionDebounceElement);
 <script>
 (function () {
     // 简单debounce函数
-    const simpleDebounce = function (immediate) {
+    const simpleDebounce = function () {
         let timer = null
         return function (fn, wait) {
             timer && clearTimeout(timer)
+            console.log(timer)
             timer = setTimeout(fn, wait)
         }
-    }
-    // 需要创建一个去抖器
-    let simpleDebouncer = simpleDebounce()
+    }()
     
+    // 可配置第一次是否立即执行debounce函数，
+    const immediateDebounce = function () {
+        let timer = null
+        return function (fn, wait, immediate) {
+            immediate && !timer && fn()
+            timer && clearTimeout(timer)
+            timer = setTimeout(fn, wait)
+        }
+    }()
+
+    function debounce (func, wait, immediate) {
+        var timeout, args, context, timestamp, result;
+
+        var later = function() {
+            console.log(1)
+            var last = new Date().getTime() - timestamp; // timestamp会实时更新
+
+            if (last < wait && last >= 0) {
+                timeout = setTimeout(later, wait - last);
+            } else {
+                timeout = null;
+                if (!immediate) {
+                    result = func.apply(context, args);
+                    if (!timeout) context = args = null;
+                }
+            }
+        };
+
+        return function() {
+            context = this;
+            args = arguments;
+            timestamp = new Date().getTime();
+            var callNow = immediate && !timeout;
+
+            if (!timeout) {
+                timeout = setTimeout(later, wait);
+            }
+            if (callNow) {
+                result = func.apply(context, args);
+                context = args = null;
+            }
+            return result;
+        };
+    }
     const paras = document.querySelectorAll('function-debounce p')
     let count = 0
     document.querySelector('function-debounce .function').addEventListener('click', (e) => {
-        let index = e.target.id.slice(-1)
-        paras[index - 1].innerHTML = ++count
-        if (e.target.id === 'debounce1') {
-            simpleDebouncer(() => {
-                paras[index - 1].innerHTML += ' 执行的内容'
-                count = 0
-            }, 1000)
-        }
-        if (e.target.id === 'debounce2') {
-            simpleDebouncer(() => {
-                paras[index - 1].innerHTML += ' 执行的内容'
-                count = 0
-            }, 1000, true)
+        if (e.target.tagName === 'BUTTON') {
+            let index = e.target.id.slice(-1)
+            paras[index - 1].innerHTML = ++count
+            if (e.target.id === 'debounce1') {
+                simpleDebounce(() => {
+                    paras[index - 1].innerHTML += ' 执行的内容'
+                    count = 0
+                }, 1000)
+            }
+            if (e.target.id === 'debounce2') {
+                debounce(function () {
+                    paras[index - 1].innerHTML += ' 执行的内容'
+                    count = 0
+                }, 1000, true)
+            }
         }
     }, false)
 })()
 </script>
 
-<!-- <script src="debounce.js"></script> -->
+<!-- <script src="debounce.js"></script> --> 
