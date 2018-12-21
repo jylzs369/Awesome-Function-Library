@@ -1,20 +1,22 @@
 <template id="debounce">
     <h1>去抖函数</h1>
     <section class="function">
-        <div>待执行函数：
+        <div>待执行函数：count是点击次数计数器，函数执行后置零
             <pre>
                 <code>
             () => {
                 paras[index - 1].innerHTML += ' 执行的内容'
+                count = 0
             }
                 </code>
             </pre>
         </div>
         <h2>方法一：利用闭包保存定时器</h2>
         <pre>
-            <button id="debounce1">尝试</button>
+            <div class="btn-box">
+                <button id="debounce1">尝试</button>
+            </div>
             <code>
-            // 利用闭包保存定时器的debounce函数
             const debounce1 = function () {
                 let timer = null
                 return function (fn, wait, scope) {
@@ -24,17 +26,13 @@
                     }, wait)
                 }
             }()
-
-            // 按钮触发事件
-            debounce1(() => {
-                paras[index - 1].innerHTML += ' 执行的内容'
-                count = 0
-            }, 1000)
             </code>
         </pre>
         <h2>方法二：利用函数属性保存定时器</h2>
         <pre>
-            <button id="debounce2">尝试</button>
+            <div class="btn-box">
+                <button id="debounce2">尝试</button>
+            </div>
             <code>
             // 利用函数属性保存定时器的debounce函数
             const debounce2 = function (fn, wait, scope) {
@@ -43,18 +41,33 @@
                     fn.call(scope)
                 }, wait)
             }
-            
-            // 按钮触发事件
-            debounce2(() => {
-                paras[index - 1].innerHTML += ' 执行的内容'
-                count = 0
-            }, 1000)
             </code>
         </pre>
-        <h2>方法三：</h2>
+        <h2>方法三：可配置是否立即执行</h2>
         <pre>
-            <button id="debounce3">尝试</button>
+            <div class="btn-box">
+                <button id="debounce3">尝试立即执行</button>
+                <button id="debounce4">尝试不立即执行</button>
+            </div>
             <code>
+            const debounce3 = function () {
+                let timer = null
+                return function (fn, wait, scope, immediate) {
+                    timer && clearTimeout(timer)
+                    if (immediate) {
+                        !timer && fn.call(scope)
+                        timer = setTimeout(() => {
+                            timer = null
+                            count = 0
+                        }, wait)
+                    } else {
+                        timer = setTimeout(function () {
+                            fn.call(scope)
+                            timer = null
+                        }, wait)
+                    }
+                }
+            }()
             </code>
         </pre>
     </section>
@@ -64,6 +77,7 @@
         <h3>方法二：</h3>
         <p></p>
         <h3>方法三：</h3>
+        <p></p>
         <p></p>
     </section>
 </template>
@@ -86,7 +100,7 @@ customElements.define('function-debounce', HTMLFunctionDebounceElement);
     const debounce1 = function () {
         let timer = null
         return function (fn, wait, scope) {
-            timer && clearTimeout(timer)
+            clearTimeout(timer)
             timer = setTimeout(function () {
                 fn.call(scope)
             }, wait)
@@ -101,16 +115,22 @@ customElements.define('function-debounce', HTMLFunctionDebounceElement);
         }, wait)
     }
     
-    // 可配置第一次是否立即执行debounce函数，
+    // 可配置是否立即执行的debounce函数
     const debounce3 = function () {
         let timer = null
-        return function (fn, wait, immediate, scope) {
+        return function (fn, wait, scope, immediate) {
             timer && clearTimeout(timer)
-            timer = setTimeout(function () {
-                fn.call(scope)
-            }, wait)
             if (immediate) {
-                fn.call(scope)
+                !timer && fn.call(scope)
+                timer = setTimeout(() => {
+                    timer = null
+                    count = 0
+                }, wait)
+            } else {
+                timer = setTimeout(function () {
+                    fn.call(scope)
+                    timer = null
+                }, wait)
             }
         }
     }()
@@ -136,13 +156,17 @@ customElements.define('function-debounce', HTMLFunctionDebounceElement);
             }
             if (target.id === 'debounce3') {
                 debounce3(function () {
-                    paras[index - 1].innerHTML += ' 执行的内容'
+                    paras[index - 1].innerHTML += ' 立即执行的内容'
                     count = 0
-                }, 1000, true)
+                }, 1000, null, true)
+            }
+            if (target.id === 'debounce4') {
+                debounce3(function () {
+                    paras[index - 1].innerHTML += ' 延迟执行的内容'
+                    count = 0
+                }, 1000)
             }
         }
     }, false)
 })()
 </script>
-
-<!-- <script src="debounce.js"></script> --> 
