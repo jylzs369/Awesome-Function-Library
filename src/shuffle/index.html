@@ -4,7 +4,9 @@
         <div>原始数据：['红桃J', '黑桃A', '方块8', '梅花6', '黑桃K', '红桃A', '梅花9', '梅花2', '红桃K', '黑桃5']</div>
         <h2>方法一：数组数据两两交换</h2>
         <pre>
-            <button id="shuffle1">尝试</button>
+            <div class="btn-box">
+                <button id="shuffle1">尝试</button>
+            </div>
             <code>
             const shuffle = array => {
                 let count = array.length - 1
@@ -19,7 +21,9 @@
         </pre>
         <h2>方法二：首尾取元素随机插入</h2>
         <pre>
-            <button id="shuffle2">尝试</button>
+            <div class="btn-box">
+                <button id="shuffle2">尝试</button>
+            </div>
             <code>
             const shuffle2 = array => {
                 let count = len = array.length
@@ -46,7 +50,9 @@
         </pre>
         <h2>方法三：简单随机抽样重组</h2>
         <pre>
-            <button id="shuffle3">尝试</button>
+            <div class="btn-box">
+                <button id="shuffle3">尝试</button>
+            </div>
             <code>
             const shuffle3 = array => {
                 let tempArr = Array.of(...array)

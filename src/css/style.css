@@ -43,10 +43,16 @@ pre {
     margin-bottom: 2em;
     overflow: auto;
 }
-pre button {
+
+.btn-box {
+    display: flex;
     position: absolute;
     top: .8em;
     right: .8em;
+    text-align: right;
+}
+.btn-box button {
+    margin-left: 5px;
 }
 
 .menu {

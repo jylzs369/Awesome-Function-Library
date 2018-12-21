@@ -6,7 +6,9 @@
         <div>另外在正则方法的实现上，eval函数可谓是最大功臣，所以此函数并不是一无是处的。</div>
         <h2>方法一：利用ES6原生Set API</h2>
         <pre>
-            <button id="deduplicate1">尝试</button>
+            <div class="btn-box">
+                <button id="deduplicate1">尝试</button>
+            </div>            
             <code>
             const deduplicate1 = string => {
                 let result = Array.from(new Set(string.split(''))).join('')
@@ -16,7 +18,9 @@
         </pre>
         <h2>方法二：逐一取出字符串首元素同时过滤相同元素</h2>
         <pre>
-            <button id="deduplicate2">尝试</button>
+            <div class="btn-box">
+                <button id="deduplicate2">尝试</button>
+            </div>
             <code>
             const deduplicate2 = string => {
                 let result = []
@@ -32,7 +36,9 @@
         </pre>
         <h2>方法三：逐一取出字符串首元素同时过滤相同元素正则版</h2>
         <pre>
-            <button id="deduplicate3">尝试</button>
+            <div class="btn-box">
+                <button id="deduplicate3">尝试</button>
+            </div>
             <code>
             const deduplicate3 = string => {
                 let s = string
