@@ -9,7 +9,7 @@ function simpleModule () {
 }
 var module1 = simpleModule()
 
-// 实现单例模块
+// 实现单例模式的模块
 var module2 = (function singleModule () {
     let hello = 'Hi, Module 2'
     let sayHello = function sayHello () {
@@ -20,7 +20,7 @@ var module2 = (function singleModule () {
     }
 })()
 
-// 保存对模块的内部引用
+// 实现保存对模块的内部引用
 var module3 = (function storeModule () {
     let store = {}
     let hello = 'Hi, Module 3'
@@ -37,6 +37,7 @@ var module3 = (function storeModule () {
     return store
 })()
 
+// 实现一个模块管理器
 var ModuleManager = (function moduleManager () {
     let modules = {}
     let register = function register (name, deps, impl) {
